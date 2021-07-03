@@ -1,17 +1,10 @@
-/*************************************************************************
-	> File Name: TimeQueue.h
-	> Author: ºúÃÏ
-	> Mail: 13535324513@163.com
-	> Created Time: Mon 22 Mar 2021 08:44:56 PM CST
- ************************************************************************/
-
 #ifndef _TIMEQUEUE_H
 #define _TIMEQUEUE_H
 
 #include "Timer.h"
 #include "noncopyable.h"
 
-// ±È½Ïº¯Êı£¬ÓÃÓÚpriority_queue£¬Ê±¼äÖµ×îĞ¡µÄÔÚ¶ÓÍ·
+// æ¯”è¾ƒå‡½æ•°ï¼Œç”¨äºpriority_queueï¼Œæ—¶é—´å€¼æœ€å°çš„åœ¨é˜Ÿå¤´
 struct cmp {
     bool operator()(Timer* a, Timer* b){
         assert(a != nullptr && b != nullptr);
@@ -27,10 +20,10 @@ public:
 
     ~TimerQueue() {}
     void updateTime() { now_ = std::chrono::high_resolution_clock::now(); }
-    void addTimer(HttpRequest* request, const int& timeout, const TimeoutCallBack& cb); // timeoutµ¥Î»ms
+    void addTimer(HttpRequest* request, const int& timeout, const TimeoutCallBack& cb); // timeoutå•ä½ms
     void delTimer(HttpRequest* request);
     void handleExpireTimers();
-    int getNextExpireTime(); // ·µ»Ø³¬Ê±Ê±¼ä(ÓÅÏÈ¶ÓÁĞÖĞ×îÔç³¬Ê±Ê±¼äºÍµ±Ç°Ê±¼ä²î)
+    int getNextExpireTime(); // è¿”å›è¶…æ—¶æ—¶é—´(ä¼˜å…ˆé˜Ÿåˆ—ä¸­æœ€æ—©è¶…æ—¶æ—¶é—´å’Œå½“å‰æ—¶é—´å·®)
 
 private:
     std::priority_queue<Timer*, std::vector<Timer*>, cmp> timerQueue_;
