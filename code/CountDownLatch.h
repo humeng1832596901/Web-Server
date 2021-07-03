@@ -1,10 +1,3 @@
-/*************************************************************************
-	> File Name: CountDownLatch.h
-	> Author: ºúÃÏ
-	> Mail: 13535324513@163.com
-	> Created Time: Tue 23 Mar 2021 05:01:18 PM CST
- ************************************************************************/
-
 #ifndef _COUNTDOWNLATCH_H
 #define _COUNTDOWNLATCH_H
 
@@ -12,8 +5,8 @@
 #include <mutex>
 #include <condition_variable>
 
-// CountDownLatchµÄÖ÷Òª×÷ÓÃÊÇÈ·±£logThreadÖĞ´«½øÈ¥µÄfuncÕæµÄÆô¶¯ÁËÒÔºó
-// Íâ²ãµÄstart²Å·µ»Ø
+// CountDownLatchçš„ä¸»è¦ä½œç”¨æ˜¯ç¡®ä¿logThreadä¸­ä¼ è¿›å»çš„funcçœŸçš„å¯åŠ¨äº†ä»¥å
+// å¤–å±‚çš„startæ‰è¿”å›
 class CountDownLatch : noncopyable {
 public:
     explicit CountDownLatch(int count);
