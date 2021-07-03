@@ -1,10 +1,3 @@
-/*************************************************************************
-	> File Name: TimeQueue.cpp
-	> Author: ºúÃÏ
-	> Mail: 13535324513@163.com
-	> Created Time: Mon 22 Mar 2021 08:53:14 PM CST
- ************************************************************************/
-
 #include "TimerQueue.h"
 #include "HttpRequest.h"
 #include <cassert>
@@ -19,15 +12,15 @@ void TimerQueue::addTimer(HttpRequest* request,
     Timer* timer = new Timer(now_ + MS(timeout), cb);
     timerQueue_.push(timer);
 
-    // ¶ÔÍ¬Ò»¸örequestÁ¬Ðøµ÷ÓÃÁ½´ÎaddTimer£¬ÐèÒª°ÑÇ°Ò»¸ö¶¨Ê±Æ÷É¾³ý
+    // å¯¹åŒä¸€ä¸ªrequestè¿žç»­è°ƒç”¨ä¸¤æ¬¡addTimerï¼Œéœ€è¦æŠŠå‰ä¸€ä¸ªå®šæ—¶å™¨åˆ é™¤
     if(request -> getTimer() != nullptr)
         delTimer(request);
 
     request -> setTimer(timer);
 }
 
-// Õâ¸öº¯Êý²»±ØÉÏËø£¬Ã»ÓÐÏß³Ì°²È«ÎÊÌâ
-// ÈôÉÏËø£¬·´¶ø»áÒòÎªÁ¬ÐøÁ½´ÎÉÏËøÔì³ÉËÀËø£ºhandleExpireTimers -> runCallBack -> __closeConnection -> delTimer
+// è¿™ä¸ªå‡½æ•°ä¸å¿…ä¸Šé”ï¼Œæ²¡æœ‰çº¿ç¨‹å®‰å…¨é—®é¢˜
+// è‹¥ä¸Šé”ï¼Œåè€Œä¼šå› ä¸ºè¿žç»­ä¸¤æ¬¡ä¸Šé”é€ æˆæ­»é”ï¼šhandleExpireTimers -> runCallBack -> __closeConnection -> delTimer
 void TimerQueue::delTimer(HttpRequest* request){
 
     // std::unique_lock<std::mutex> lock(lock_);
@@ -37,10 +30,10 @@ void TimerQueue::delTimer(HttpRequest* request){
     if(timer == nullptr)
         return;
 
-    // Èç¹ûÕâÀïÐ´³Édelete timeNode£¬»áÊ¹priority_queueÀïµÄ¶ÔÓ¦Ö¸Õë±ä³É´¹ÐüÖ¸Õë
-    // ÕýÈ·µÄ·½·¨ÊÇ¶èÐÔÉ¾³ý
+    // å¦‚æžœè¿™é‡Œå†™æˆdelete timeNodeï¼Œä¼šä½¿priority_queueé‡Œçš„å¯¹åº”æŒ‡é’ˆå˜æˆåž‚æ‚¬æŒ‡é’ˆ
+    // æ­£ç¡®çš„æ–¹æ³•æ˜¯æƒ°æ€§åˆ é™¤
     timer -> del();
-    // ·ÀÖ¹request -> getTimer()·ÃÎÊµ½´¹ÐüÖ¸Õë
+    // é˜²æ­¢request -> getTimer()è®¿é—®åˆ°åž‚æ‚¬æŒ‡é’ˆ
     request -> setTimer(nullptr);
 }
 
@@ -51,17 +44,17 @@ void TimerQueue::handleExpireTimers(){
     while(!timerQueue_.empty()) {
         Timer* timer = timerQueue_.top();
         assert(timer != nullptr);
-        // ¶¨Ê±Æ÷±»É¾³ý
+        // å®šæ—¶å™¨è¢«åˆ é™¤
         if(timer -> isDeleted()) {
             timerQueue_.pop();
             delete timer;
             continue;
         }
-        // ÓÅÏÈ¶ÓÁÐÍ·²¿µÄ¶¨Ê±Æ÷Ò²Ã»ÓÐ³¬Ê±£¬return
+        // ä¼˜å…ˆé˜Ÿåˆ—å¤´éƒ¨çš„å®šæ—¶å™¨ä¹Ÿæ²¡æœ‰è¶…æ—¶ï¼Œreturn
         if(std::chrono::duration_cast<MS>(timer -> getExpireTime() - now_).count() > 0) {
             return;
         }
-        // ³¬Ê±
+        // è¶…æ—¶
         timer -> runCallBack();
         timerQueue_.pop();
         delete timer;
