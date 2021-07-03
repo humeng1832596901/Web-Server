@@ -1,10 +1,3 @@
-/*************************************************************************
-	> File Name: CurrentThread.h
-	> Author: ºúÃÏ
-	> Mail: 13535324513@163.com
-	> Created Time: Fri 26 Mar 2021 08:28:58 PM CST
- ************************************************************************/
-
 #ifndef _CURRENTTHREAD_H
 #define _CURRENTTHREAD_H
 
