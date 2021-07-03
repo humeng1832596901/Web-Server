@@ -1,10 +1,3 @@
-/*************************************************************************
-	> File Name: AsyncLogging.h
-	> Author: ºúÃÏ
-	> Mail: 13535324513@163.com
-	> Created Time: Tue 23 Mar 2021 04:55:51 PM CST
- ************************************************************************/
-
 #ifndef _ASYNCLOGGING_H
 #define _ASYNCLOGGING_H
 
