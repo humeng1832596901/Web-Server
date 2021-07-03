@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>登录</title>
+    </head>
+
+    <script type="text/javascript">
+        /**
+        * 重置
+         */
+        function register() {
+            window.location.href = './register.html'; 
+
+        }
+
+        let username = document.getElementById('username')
+        let password = document.getElementById('password')
+        let loginBtn = document.getElementById('loginbtn')
+        // js里面不允许出现 -
+
+        //一般的交互事件
+        // onclick 点击事件
+        // onmousemove  鼠标移入事件
+        // onmouseout  鼠标移出事件
+        // ondblclick  双击事件
+        // onfocus  input框获取焦点事件
+        // onblur  失焦事件
+
+
+        loginBtn.onclick = function() {
+            let usernamevalue = username.value
+            let passwordvalue = password.value
+            // 便于检查的时候判断是否成功
+            if (!usernamevalue) {
+                return alert('请输入正确的用户名')
+            }
+        }
+    </script>
+
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                background-color: rgb(235, 235, 235);
+            }
+
+            form {
+                width: 400px;
+                height: 380px;
+                background-color: white;
+                padding: 20px;
+                box-sizing: border-box;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                /* 相对于现在所处位置的位移变化，x便偏移自己宽度的50%，y偏移自己高度的50% */
+            }
+
+            h2 {
+                margin-bottom: 20px;
+                text-align: center;
+            }
+
+            form input {
+                width: 100%;
+                height: 40px;
+                display: block;
+                margin-bottom: 20px;
+                padding-left: 10px;
+                box-sizing: border-box;
+            }
+
+            .mya {
+                width: 100%;
+                height: 40px;
+                margin-bottom: 20x;
+            }
+
+            .mya a:nth-child(1) {
+                float: left;
+            }
+
+            .mya a:nth-child(2) {
+                float: right;
+            }
+
+            button {
+                width: 100%;
+                height: 40px;
+                background-color: rgb(235, 235, 235);
+                border: none;
+            }
+
+            button:active {
+                box-shadow: 0 0 3px rgb(173, 172, 172);
+                /* x偏移  y偏移  模糊值 颜色 */
+            }
+        </style>
+        <body>
+            <form method="GET">
+                <div class="box" align="center">
+                    <h2>修改密码</h2>
+                    <div><input id="username" type="text" value=""  placeholder="请输入用户名" name="user" /></div>
+                    <div><input id="password1" type="password" value=""  placeholder="请输入原密码" name="pwd"  /></div>
+                    <div><input id="password2" type="password" value=""  placeholder="请输入现密码" name="pwd"  /></div>
+
+                    <div>
+                        <input id="loginbtn" type="submit" value="确认修改" onclick="return checkVerify();"/>
+                    </div>
+                </div>
+            </form>
+        </body>
+</html>
+
+<script>
+    (function(){
+        var sub = document.getElementById("loginbtn");
+        //初始化移入移出事件
+        if(sub.addEventListener){
+            sub.addEventListener("click", test);
+        }else if(sub.attachEvent){
+            sub.attachEvent("onClick", test);
+        }
+    })();
+    function test(){
+        var password = document.getElementById("password1");
+        var passwordConfirm = document.getElementById("password2");
+        var user = document.getElementById("username");
+        if(!user.value){
+            alert("对不起，请正确输入用户名");
+        }
+        if(password.value == passwordConfirm.value)
+            alert("对不起，您2次输入的密码一致");
+        else
+            document.forms[0].submit();
+    }
+    function checkusr(obj){
+        if (isNaN(obj.value)){
+            alert("账号为数字！");
+            obj.value= "";
+        }
+    }
+
+    function checkpwd(obj){
+        if(isNaN(obj.value)){
+            alert("密码必须为数字!");
+            obj.value = "";
+        }
+    }
+</script>
