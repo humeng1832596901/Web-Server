@@ -1,10 +1,3 @@
-/*************************************************************************
-	> File Name: LogFile.h
-	> Author: ºúÃÏ
-	> Mail: 13535324513@163.com
-	> Created Time: Tue 23 Mar 2021 04:57:39 PM CST
- ************************************************************************/
-
 #ifndef _LOGFILE_H
 #define _LOGFILE_H
 
@@ -15,10 +8,10 @@
 #include "noncopyable.h"
 
 
-// Ìá¹©×Ô¶¯¹éµµ¹¦ÄÜ
+// æä¾›è‡ªåŠ¨å½’æ¡£åŠŸèƒ½
 class LogFile : noncopyable {
 public:
-    // Ã¿±»append flushEveryN´Î£¬flushÒ»ÏÂ£¬»áÍùÎÄ¼şĞ´£¬Ö»²»¹ı£¬ÎÄ¼şÒ²ÊÇ´ø»º³åÇøµÄ
+    // æ¯è¢«append flushEveryNæ¬¡ï¼Œflushä¸€ä¸‹ï¼Œä¼šå¾€æ–‡ä»¶å†™ï¼Œåªä¸è¿‡ï¼Œæ–‡ä»¶ä¹Ÿæ˜¯å¸¦ç¼“å†²åŒºçš„
     LogFile(const std::string& basename, int flushEveryN = 1024);
     ~LogFile();
 
